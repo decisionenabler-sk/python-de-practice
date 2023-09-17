@@ -1,0 +1,52 @@
+{
+    "customer_service": [
+      {
+        "customer_id": "1001",
+        "customer_name": "John Doe",
+        "customer_email": "johndoe@example.com",
+        "subscription_id": "S12345",
+        "product_name": "SaaS Product X",
+        "support_tickets": [
+          {
+            "ticket_id": "T001",
+            "date_opened": "2023-09-14 09:30:00",
+            "date_closed": "2023-09-14 14:45:00",
+            "status": "Closed",
+            "issue": "Login issue, resolved after password reset."
+          },
+          {
+            "ticket_id": "T002",
+            "date_opened": "2023-09-15 14:00:00",
+            "date_closed": null,
+            "status": "Open",
+            "issue": "Software bug affecting report generation."
+          }
+        ]
+      },
+      {
+        "customer_id": "1002",
+        "customer_name": "Jane Smith",
+        "customer_email": "janesmith@example.com",
+        "subscription_id": "S12346",
+        "product_name": "SaaS Product Y",
+        "support_tickets": [
+          {
+            "ticket_id": "T003",
+            "date_opened": "2023-09-16 10:15:00",
+            "date_closed": null,
+            "status": "Open",
+            "issue": "Billing discrepancy."
+          }
+        ]
+      },
+      {
+        "customer_id": "1003",
+        "customer_name": "Bob Johnson",
+        "customer_email": "bob@example.com",
+        "subscription_id": "S12347",
+        "product_name": "SaaS Product Z",
+        "support_tickets": []
+      }
+    ]
+  }
+  
