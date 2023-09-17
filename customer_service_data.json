@@ -20,6 +20,13 @@
             "date_closed": null,
             "status": "Open",
             "issue": "Software bug affecting report generation."
+          },
+          {
+            "ticket_id": "T004",
+            "date_opened": "2023-09-17 14:00:00",
+            "date_closed": null,
+            "status": "Open",
+            "issue": "Software bug affecting report open."
           }
         ]
       },
