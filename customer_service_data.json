@@ -27,6 +27,13 @@
             "date_closed": null,
             "status": "Open",
             "issue": "Software bug affecting report open."
+          },
+          {
+            "ticket_id": "T005",
+            "date_opened": "2023-09-17 16:30:00",
+            "date_closed": "2023-09-18 9:00:00",
+            "status": "Closed",
+            "issue": "The customer does not see the dashboard."
           }
         ]
       },
@@ -43,6 +50,13 @@
             "date_closed": null,
             "status": "Open",
             "issue": "Billing discrepancy."
+          },
+          {
+            "ticket_id": "T006",
+            "date_opened": "2023-09-17 08:30:00",
+            "date_closed": "2023-09-17 09:00:00",
+            "status": "Closed",
+            "issue": "Not able to restart"
           }
         ]
       },
