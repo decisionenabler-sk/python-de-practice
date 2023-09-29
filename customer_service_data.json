@@ -67,6 +67,45 @@
         "subscription_id": "S12347",
         "product_name": "SaaS Product Z",
         "support_tickets": []
+      },
+      {
+        "customer_id": "1004",
+        "customer_name": "Tracy John",
+        "customer_email": "tracyj@example.com",
+        "subscription_id": "S12348",
+        "product_name": "SaaS Product X",
+        "support_tickets": [
+          {
+            "ticket_id": "T011",
+            "date_opened": "2023-09-20 11:15:00",
+            "date_closed": null,
+            "status": "Open",
+            "issue": "Login issue, resolved after password reset."
+          },
+          {
+            "ticket_id": "T012",
+            "date_opened": "2023-09-21 01:00:00",
+            "date_closed": null,
+            "status": "Open",
+            "issue": "Invoice was not delivered"
+          }
+        ]
+      },
+      {
+        "customer_id": "1005",
+        "customer_name": "Lily Smith",
+        "customer_email": "lilysmith@example.com",
+        "subscription_id": "S12349",
+        "product_name": "SaaS Product Y",
+        "support_tickets": [
+          {
+            "ticket_id": "T013",
+            "date_opened": "2023-09-23 08:30:00",
+            "date_closed": null,
+            "status": "Open",
+            "issue": "Invoice was not delivered"
+          }
+        ]
       }
     ]
   }
