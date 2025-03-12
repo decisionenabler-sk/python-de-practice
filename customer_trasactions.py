@@ -34,7 +34,6 @@ def get_top_electronics_customer(transactions):
 print("The customer who spent the most in Electronics is:",get_top_electronics_customer(transactions))
                 
 # 3. Create a dictionary mapping each customer to their most frequently purchased category.
-# Beep bop...
 def get_most_purchased_category(transactions):
     customer_category_count = {}
     for trasaction in transactions:
