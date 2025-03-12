@@ -35,5 +35,18 @@ print("The customer who spent the most in Electronics is:",get_top_electronics_c
                 
 # 3. Create a dictionary mapping each customer to their most frequently purchased category.
 # Beep bop...
+def get_most_purchased_category(transactions):
+    customer_category_count = {}
+    for trasaction in transactions:
+        customer_id = trasaction["customer_id"]
+        category = trasaction["category"]
+        customer_category_count[customer_id] = customer_category_count.get(customer_id, {})
+        customer_category_count[customer_id][category] = customer_category_count[customer_id].get(category, 0) + 1
+    customer_most_purchased_category = {}
+    for customer_id, category_count in customer_category_count.items():
+        most_purchased_category = max(category_count, key=category_count.get)
+        customer_most_purchased_category[customer_id] = most_purchased_category
+    return customer_most_purchased_category
+print("The most frequently purchased category by each customer is:",get_most_purchased_category(transactions))
 # 4. Calculate the average transaction amount per category, rounded to two decimal places. - Easy (Basic grouping with mean calculation)
 # Beep bop...
