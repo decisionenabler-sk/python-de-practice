@@ -2,7 +2,7 @@
 # Input: [['Pizza Hut', 'Pepperoni Pizza', 25.99], ['McDonald\'s', 'Big Mac', 15.50], ['Pizza Hut', 'Margherita Pizza', 22.50], ['Subway', 'Italian BMT', 12.75], ['McDonald\'s', 'Chicken McNuggets', 10.25]]
 # Output: {'Pizza Hut': [['Pepperoni Pizza', 25.99], ['Margherita Pizza', 22.50]], 'McDonald\'s': [['Big Mac', 15.50], ['Chicken McNuggets', 10.25]], 'Subway': [['Italian BMT', 12.75]]}
 from collections import defaultdict
-
+# Scenario 1: if the list looks like this i.e. the restauarant name, item and price in same list
 orders = [
     ['Pizza Hut', 'Pepperoni Pizza', 25.99],
     ['McDonald\'s', 'Big Mac', 15.50],
@@ -10,6 +10,7 @@ orders = [
     ['Subway', 'Italian BMT', 12.75],
     ['McDonald\'s', 'Chicken McNuggets', 10.25]
 ]
+# Scenario 2: if the list looks like this i.e. the restauarant name, item and price in separate lists
 restaurants = ['Pizza Hut', 'McDonald\'s', 'Subway']
 items = ['Pepperoni Pizza', 'Big Mac', 'Margherita Pizza', 'Italian BMT', 'Chicken McNuggets']
 prices = [25.99, 15.50, 22.50, 12.75, 10.25]
