@@ -10,9 +10,20 @@ orders = [
     ['Subway', 'Italian BMT', 12.75],
     ['McDonald\'s', 'Chicken McNuggets', 10.25]
 ]
+restaurants = ['Pizza Hut', 'McDonald\'s', 'Subway']
+items = ['Pepperoni Pizza', 'Big Mac', 'Margherita Pizza', 'Italian BMT', 'Chicken McNuggets']
+prices = [25.99, 15.50, 22.50, 12.75, 10.25]
 def group_orders_by_restaurant(orders):
     orders_by_restaurants = defaultdict(lambda: defaultdict(float))
     for restaurant, item, price in orders:
         orders_by_restaurants[restaurant][item] = price
     return orders_by_restaurants
-print(group_orders_by_restaurant(orders))
+# print(group_orders_by_restaurant(orders))
+
+def transform_orders(restaurants, items, prices):
+    orders_by_restaurants = defaultdict(lambda: defaultdict(float))
+    orders = list(zip(restaurants, items, prices))
+    for restaurant, item, price in orders:
+        orders_by_restaurants[restaurant][item] = price
+    return {restaurant: dict(items) for restaurant, items in orders_by_restaurants.items()}
+print(transform_orders(restaurants, items, prices))
