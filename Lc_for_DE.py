@@ -59,7 +59,7 @@ substring = "test"
 #[1, 1, 2] => {2: 1}
 # [1, 1, 1, 5, 3, 2, 2] => {5: 2, 3: 2, 2: 1}
 
-# Slow thinking: first, count the ints and store in default dict, then find the highest value and max value - other values will be the final output
+# Slow thinking: first, count the ints and store in default dict, then find the highest value and do the operation max count - current count for the final output
 
 def balance_list(integer_list):
     # Count the number of times an integer appears in the list
