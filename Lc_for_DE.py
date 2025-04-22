@@ -72,5 +72,22 @@ def balance_list(integer_list):
     output = {i:max_count - count for i,count in int_count.items() if max_count - count > 0}
     return output
 # Test
-print(balance_list([1, 1, 2]))
-print(balance_list([1, 1, 1, 5, 3, 2, 2]))
+# print(balance_list([1, 1, 2]))
+# print(balance_list([1, 1, 1, 5, 3, 2, 2]))
+
+# 6. Write a function to count the number of times each character appears in a string and rewrite the string in that format. 
+#  “I am back.” should become “i1 2a2m1b1c1k1.1”
+
+# Slow Thinking: 1. Count each char by iterating over the sentence 2. Append the count with char to the output list 3. constrcuct the sentence back using the output list
+
+def rewrite_string(sentence):
+    char_count = defaultdict(int)
+    output = []
+    for char in sentence.lower():
+        char_count[char] += 1
+        output.append(f"{char}{char_count[char]}")
+    return ''.join(output)
+
+# Test
+print(rewrite_string("I am back."))
+print(rewrite_string("This is the year 2025"))
