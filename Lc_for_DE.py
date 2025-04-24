@@ -108,9 +108,43 @@ def is_valid_ip(ip_address):
         # Check 4: Each octet should not start with leading zeroes
         if not octet.isdigit() or int(octet) < 0 or int(octet) > 255 or (len(octet) > 1 and octet[0] == '0'):
             return False
+    # If the function hasn’t returned False by this point, it means all octets are valid
     return True
 # Test
 # Valid IP Address
-print("The ip address 192.168.1.1 is valid?",is_valid_ip("192.168.1.1"))
+# print("The ip address 192.168.1.1 is valid?",is_valid_ip("192.168.1.1"))
 # Invalid IP Address
-print("The ip address 256.300.1.01 is valid?", is_valid_ip("256.300.1.01"))
+# print("The ip address 256.300.1.01 is valid?", is_valid_ip("256.300.1.01"))
+
+# 8. For given lists of whether data, if the value is none replace it with the last non none value, consider the edge case of consecutive Nones.
+
+# Slow Thinking: 1. None is first element and there is no last non none value 2. Consecutive None values so grab previous non none value 3. All none values and no None values
+def fill_in_list(weather_list):
+    # Check for all None
+    if all(w is None for w in weather_list):
+        return weather_list
+    # Initialize previous value
+    previous_value = None
+    for i,value in enumerate(weather_list):
+        # When first element is None
+        if value is None:
+            weather_list[i] = previous_value
+        else:
+            previous_value = value
+    return weather_list
+# Test 
+weather_data_1 = [20, None, 22, None, None, 25]
+# Expected Output: [20, 20, 22, 22, 22, 25]
+print("weather_data_1",fill_in_list(weather_data_1))
+weather_data_2 = [None, None, 18, 20, None, 22]
+# Expected Output: [None, None, 18, 20, 20, 22]
+print("weather_data_2",fill_in_list(weather_data_2))
+weather_data_3 = [15, None, None, 18, None, None, 20]
+# Expected Output: [15, 15, 15, 18, 18, 18, 20]
+print("weather_data_3",fill_in_list(weather_data_3))
+weather_data_4 = [None, None, None]
+# Expected Output: [None, None, None]
+print("weather_data_4",fill_in_list(weather_data_4))
+weather_data_5 = [10, 12, 15, 18, 20]
+# Expected Output: [10, 12, 15, 18, 20]
+print("weather_data_5",fill_in_list(weather_data_5))
