@@ -89,5 +89,33 @@ def rewrite_string(sentence):
     return ''.join(output)
 
 # Test
-print(rewrite_string("I am back."))
-print(rewrite_string("This is the year 2025"))
+# print(rewrite_string("I am back."))
+# print(rewrite_string("This is the year 2025"))
+
+# 7. Given a string, determine if it is a valid IP address. 
+# A valid IP is follows the format x.x.x.x, where each "x" is a number between 0 and 255, and it must have exactly four sections separated by periods. 
+# Each section represents a decimal value, and leading zeros are not allowed within each section. 
+
+# slow thinking: We'll do 4 checks - 1. The length of ip address list should be exact 4 2. all integers 3. wihtin the valid range 4. no leading 0s when 
+def is_valid_ip(ip_address):
+    ip_address_list = ip_address.split(".")
+    # Check 1: number of octets not be more than or less than 4
+    if len(ip_address_list) != 4:
+        return False
+    for octet in ip_address_list:
+        # Check 2: Each octet should be an integer
+        if not octet.isdigit():
+            return False
+        # Check 3: Each octet should be within the valid range
+        num = int(octet)
+        if num < 0 or num > 255:
+            return False
+        # Check 4: Each octet should not start with leading zeroes
+        if len(octet) > 1 and octet[0] == 0:
+            return False
+    return True
+# Test
+# Valid IP Address
+print("The ip address 192.168.1.1 is valid?",is_valid_ip("192.168.1.1"))
+# Invalid IP Address
+print("The ip address 256.300.1.01 is valid?", is_valid_ip("256.300.1.01"))
