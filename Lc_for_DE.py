@@ -104,14 +104,9 @@ def is_valid_ip(ip_address):
         return False
     for octet in ip_address_list:
         # Check 2: Each octet should be an integer
-        if not octet.isdigit():
-            return False
         # Check 3: Each octet should be within the valid range
-        num = int(octet)
-        if num < 0 or num > 255:
-            return False
         # Check 4: Each octet should not start with leading zeroes
-        if len(octet) > 1 and octet[0] == 0:
+        if not octet.isdigit() or int(octet) < 0 or int(octet) > 255 or (len(octet) > 1 and octet[0] == '0'):
             return False
     return True
 # Test
