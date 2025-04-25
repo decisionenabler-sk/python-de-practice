@@ -148,3 +148,19 @@ print("weather_data_4",fill_in_list(weather_data_4))
 weather_data_5 = [10, 12, 15, 18, 20]
 # Expected Output: [10, 12, 15, 18, 20]
 print("weather_data_5",fill_in_list(weather_data_5))
+
+# 9. Create a function that returns a list containing mismatched words in two strings.
+# Slow thinking:
+
+# Test
+arr1 = ["this", "is", "my", "test"]
+arr2 = ["this", "is", "my", "array"]
+# Expected output: ["test", "array"]
+
+# 10. Write a function that returns the key of the nth largest value in a dictionary
+
+# Test: 
+{'a': 1, 'b': 2, 'c': 100, 'd': 30}
+# Expected Output: n : 2 (2nd largest value)
+
+# 11. Given an array of integers, we would like to determine whether the array is monotonic (non-decreasing/non-increasing) or not.
