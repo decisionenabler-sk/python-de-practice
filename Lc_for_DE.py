@@ -158,9 +158,14 @@ arr2 = ["this", "is", "my", "array"]
 # Expected output: ["test", "array"]
 
 # 10. Write a function that returns the key of the nth largest value in a dictionary
-
+def n_largest(dict,n):
+    sorted_values = sorted(set(dict.values()), reverse=True)
+    if n > len(sorted_values):
+        return None
+    nth_largest_value = sorted_values[n-1]
+    return {k:v for k,v in dict.items() if v == nth_largest_value}
 # Test: 
-{'a': 1, 'b': 2, 'c': 100, 'd': 30}
-# Expected Output: n : 2 (2nd largest value)
-
+test_dict = {'a': 1, 'b': 2, 'c': 100, 'd': 30, 'e':100, 'f':30}
+# Expected Output: n : 2 (2nd largest value) d
+print(n_largest(test_dict,2))
 # 11. Given an array of integers, we would like to determine whether the array is monotonic (non-decreasing/non-increasing) or not.
