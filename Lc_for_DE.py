@@ -135,27 +135,44 @@ def fill_in_list(weather_list):
 # Test 
 weather_data_1 = [20, None, 22, None, None, 25]
 # Expected Output: [20, 20, 22, 22, 22, 25]
-print("weather_data_1",fill_in_list(weather_data_1))
+# print("weather_data_1",fill_in_list(weather_data_1))
 weather_data_2 = [None, None, 18, 20, None, 22]
 # Expected Output: [None, None, 18, 20, 20, 22]
-print("weather_data_2",fill_in_list(weather_data_2))
+# print("weather_data_2",fill_in_list(weather_data_2))
 weather_data_3 = [15, None, None, 18, None, None, 20]
 # Expected Output: [15, 15, 15, 18, 18, 18, 20]
-print("weather_data_3",fill_in_list(weather_data_3))
+# print("weather_data_3",fill_in_list(weather_data_3))
 weather_data_4 = [None, None, None]
 # Expected Output: [None, None, None]
-print("weather_data_4",fill_in_list(weather_data_4))
+# print("weather_data_4",fill_in_list(weather_data_4))
 weather_data_5 = [10, 12, 15, 18, 20]
 # Expected Output: [10, 12, 15, 18, 20]
-print("weather_data_5",fill_in_list(weather_data_5))
+# print("weather_data_5",fill_in_list(weather_data_5))
 
 # 9. Create a function that returns a list containing mismatched words in two strings.
-# Slow thinking:
-
-# Test
+# Slow thinking: first convert the list to set to remove dupes if any
+def get_mismatched_word(arr1,arr2):
+    # ideal case when the length of the lists are same
+    for word1, word2 in zip(arr1,arr2):
+        if word1 != word2:
+            result = [word1, word2]
+        else:
+            result = None
+    if len(arr1) > len(arr2):
+        result = arr1[len(arr2):]
+    elif len(arr2) > len(arr1):
+        result = arr2[len(arr1):]
+    return result
+# Test 1
 arr1 = ["this", "is", "my", "test"]
 arr2 = ["this", "is", "my", "array"]
 # Expected output: ["test", "array"]
+print("Mismatched words in arr1 and arr2 are:",get_mismatched_word(arr1,arr2))
+# Test 2
+arr3 = ["this", "is", "my", "test", "extra"]
+arr4 = ["this", "is", "my", "array"]
+# Expected Output: ['test', 'array', 'extra']
+print("Mismatched words in arr3 and arr4 are:",get_mismatched_word(arr3, arr4))
 
 # 10. Write a function that returns the key of the nth largest value in a dictionary
 def n_largest(dict,n):
@@ -167,5 +184,5 @@ def n_largest(dict,n):
 # Test: 
 test_dict = {'a': 1, 'b': 2, 'c': 100, 'd': 30, 'e':100, 'f':30}
 # Expected Output: n : 2 (2nd largest value) d
-print(n_largest(test_dict,2))
+# print(n_largest(test_dict,2))
 # 11. Given an array of integers, we would like to determine whether the array is monotonic (non-decreasing/non-increasing) or not.
