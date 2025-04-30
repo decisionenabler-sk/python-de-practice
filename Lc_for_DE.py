@@ -167,12 +167,12 @@ def get_mismatched_word(arr1,arr2):
 arr1 = ["this", "is", "my", "test"]
 arr2 = ["this", "is", "my", "array"]
 # Expected output: ["test", "array"]
-print("Mismatched words in arr1 and arr2 are:",get_mismatched_word(arr1,arr2))
+# print("Mismatched words in arr1 and arr2 are:",get_mismatched_word(arr1,arr2))
 # Test 2
 arr3 = ["this", "is", "my", "test", "extra"]
 arr4 = ["this", "is", "my", "array"]
 # Expected Output: ['test', 'array', 'extra']
-print("Mismatched words in arr3 and arr4 are:",get_mismatched_word(arr3, arr4))
+# print("Mismatched words in arr3 and arr4 are:",get_mismatched_word(arr3, arr4))
 
 # 10. Write a function that returns the key of the nth largest value in a dictionary
 def n_largest(dict,n):
@@ -185,4 +185,27 @@ def n_largest(dict,n):
 test_dict = {'a': 1, 'b': 2, 'c': 100, 'd': 30, 'e':100, 'f':30}
 # Expected Output: n : 2 (2nd largest value) d
 # print(n_largest(test_dict,2))
+
 # 11. Given an array of integers, we would like to determine whether the array is monotonic (non-decreasing/non-increasing) or not.
+
+def is_monotonic(arr):
+    inc = True # initialize the array as non-decreasing
+    dec = True # initialize the array as non-increasing
+    if len(arr) <= 1:
+        return inc or dec
+    for i in range(1,len(arr)):
+        if arr[i] > arr[i-1]:
+            inc = False # If an element is greater than the previous, it's not non-increasing
+        if arr[i] < arr[i-1]:
+            dec = False # If an element is smaller than the previous, it's not non-decreasing
+    return inc or dec
+# Tests: 1 2 5 5 8 > true , 9 4 4 2 2 > true, 1 4 6 3 >false, 1 1 1 1 1 1 >true
+int_list1 = [1, 2, 5, 5, 8]
+int_list2 = [9, 4, 4, 2 ,2]
+int_list3 = [1, 4, 6, 3]
+int_list4 = [1, 1, 1, 1, 1, 1]
+
+print("is int_list1 monotonic?", is_monotonic(int_list1))
+print("is int_list2 monotonic?", is_monotonic(int_list2))
+print("is int_list3 monotonic?", is_monotonic(int_list3))
+print("is int_list4 monotonic?", is_monotonic(int_list4))
