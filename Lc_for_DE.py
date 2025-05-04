@@ -205,7 +205,19 @@ int_list2 = [9, 4, 4, 2 ,2]
 int_list3 = [1, 4, 6, 3]
 int_list4 = [1, 1, 1, 1, 1, 1]
 
-print("is int_list1 monotonic?", is_monotonic(int_list1))
-print("is int_list2 monotonic?", is_monotonic(int_list2))
-print("is int_list3 monotonic?", is_monotonic(int_list3))
-print("is int_list4 monotonic?", is_monotonic(int_list4))
+# print("is int_list1 monotonic?", is_monotonic(int_list1))
+# print("is int_list2 monotonic?", is_monotonic(int_list2))
+# print("is int_list3 monotonic?", is_monotonic(int_list3))
+# print("is int_list4 monotonic?", is_monotonic(int_list4))
+
+# 12. Find the Median of Two Arrays
+# Slow thinking:
+def get_median(array1, array2):
+    merged_array = sorted(array1 + array2)
+    n = len(merged_array)
+    if n % 2 == 0:
+        median = (merged_array[n // 2 - 1] + merged_array[n // 2]) / 2
+    else:
+        median = merged_array[n //2]
+    return median
+print("The median is:", get_median([1,2,3,5] , [2,3,6,1,9]))
