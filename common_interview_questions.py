@@ -3,6 +3,18 @@
 #    Example: Input: ["eat", "tea", "tan", "ate", "nat", "bat"]
 #    Output: [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]
 
+def group_anagrams(arr):
+    anagram_groups = {}
+    for word in arr:
+        sorted_word = ''.join(sorted(word))
+        if sorted_word in anagram_groups:
+            anagram_groups[sorted_word].append(word)
+        else:
+            anagram_groups[sorted_word] = [word]
+    return list(anagram_groups.values())
+test_input = ["eat", "tea", "tan", "ate", "nat", "bat"]
+print(group_anagrams(test_input))  # [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]
+
 # 2. **Find All Pairs with Given Sum**: Given an array of integers and a target sum, find all pairs that add up to the target.
 #    Example: Input: [1, 5, 3, 7, 9], target = 10
 #    Output: [(1, 9), (3, 7)]
@@ -54,7 +66,7 @@ def get_most_req_elements(arr,k):
         freq[num] += 1
     sorted_freq = sorted(freq.items(), key=lambda x: x[1], reverse=True)
     return [item[0] for item in sorted_freq[:k]]
-print(get_most_req_elements([1, 1, 1, 2, 2, 3],2))
+# print(get_most_req_elements([1, 1, 1, 2, 2, 3],2))
 # 6. **Merge Delivery Windows**: Given a list of time intervals for deliveries (start and end times), merge overlapping intervals to optimize delivery routes.
 #    Example: Input: [(1, 3), (2, 6), (8, 10), (15, 18)]
 #    Output: [(1, 6), (8, 10), (15, 18)]
