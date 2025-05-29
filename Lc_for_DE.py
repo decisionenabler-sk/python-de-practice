@@ -232,4 +232,22 @@ def find_missing_number (nums):
     missing_number = total_sum - actual_sum
     return missing_number
 # Test
-print("The missing number is:", find_missing_number([0, 1, 2, 3, 4, 6]))  # Output: 5
+# print("The missing number is:", find_missing_number([0, 1, 2, 3, 4, 6]))  # Output: 5
+
+# 14. Given a list of strings of letters from a to z, create a function, sum_alphabet, that returns a list of the alphabet sum of each word in the string.
+
+# The alphabet sum is the sum of the ordinal position of each of the string’s letters in the standard English alphabet ordering.
+# So, the letter a will have a value of 1, z will have a value of 26, and so on.
+# As an example the string 'sport' will have an alphabet sum of 19 + 16 + 15 + 18 + 20 = 88.
+
+def sum_alphabet(words):
+    aplhabet_dict = {k: v for v, k in enumerate('abcdefghijklmnopqrstuvwxyz', start=1)}
+    result = 0
+    for word in words:
+        word = word.lower()
+        for char in word:
+            if char in aplhabet_dict:
+                result += aplhabet_dict[char]
+    return result
+# Test
+print("The alphabet sum of the words is:", sum_alphabet(['sport' , 'good' , 'bad']))  # Output: 88 + 41 + 7 = 136
