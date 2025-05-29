@@ -220,4 +220,16 @@ def get_median(array1, array2):
     else:
         median = merged_array[n //2]
     return median
-print("The median is:", get_median([1,2,3,5] , [2,3,6,1,9]))
+# print("The median is:", get_median([1,2,3,5] , [2,3,6,1,9]))
+
+# 13. You have an array of integers, nums of length n spanning 0 to n with one missing. 
+# Write a function missing_number that returns the missing number in the array.
+
+def find_missing_number (nums):
+    n = len(nums)
+    total_sum = n * (n + 1) // 2
+    actual_sum = sum(nums)
+    missing_number = total_sum - actual_sum
+    return missing_number
+# Test
+print("The missing number is:", find_missing_number([0, 1, 2, 3, 4, 6]))  # Output: 5
