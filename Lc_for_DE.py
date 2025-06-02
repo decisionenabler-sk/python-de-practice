@@ -250,4 +250,30 @@ def sum_alphabet(words):
                 result += aplhabet_dict[char]
     return result
 # Test
-print("The alphabet sum of the words is:", sum_alphabet(['sport' , 'good' , 'bad']))  # Output: 88 + 41 + 7 = 136
+# print("The alphabet sum of the words is:", sum_alphabet(['sport' , 'good' , 'bad']))  # Output: 88 + 41 + 7 = 136
+
+# 15. Given a list of integers, find the length of the longest consecutive subsequence.
+# Input: 
+nums = [100, 4, 200, 1, 3, 2] # Output: 4
+# slow thinking: 1. make the list as set to remove duplicates and sort the list 2. Iterate through the list and check if the current number is consecutive to the previous number, if yes, increase the count
+def find_longest_consecutive_seq(nums):
+    nums = sorted(set(nums))  # Remove duplicates
+    print("The sorted list is:", nums) 
+    # Initialize the streak to 1
+    longest_streak = 1
+    streak = 1
+    if not nums:  # If the list is empty, return 0
+        return 0
+    for i in range(1, len(nums)):
+        if nums[i] == nums[i-1]  + 1:  # Check if the current number is consecutive to the previous number and skip the first element
+            streak += 1
+            longest_streak = max(longest_streak, streak)
+        else:  # If not consecutive, reset the streak to 1
+            streak = 1
+    return longest_streak # Return the maximum of the longest streak and the current streak
+
+# Test
+print("The length of the longest consecutive subsequence is:", find_longest_consecutive_seq(nums))  # Output: 4
+# Test 2
+nums2 = [9, 1, 7, 3, -1, 0, 5, 8, -2, 6, 2] # Output: 6
+print("The length of the longest consecutive subsequence is:", find_longest_consecutive_seq(nums2))  # Output: 6
