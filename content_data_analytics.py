@@ -36,12 +36,36 @@ def churning_users(weekly_activity):
             else:
                 decline_rates[user] = 0.0
     return {"at_risk_users": at_risk_users, "decline_rates": dict(decline_rates)}
-print(churning_users(weekly_activity))
+# print(churning_users(weekly_activity))
 # 2. Given daily content rankings by region, find shows that are consistently popular across regions. 
-# Find shows that appear in top 3 of all regions for at least 2 out of 3 days. 
+# Find shows that appear in top 3 of all regions 
 regional_rankings = [
     {"US": ["Show A", "Show B", "Show C"], "UK": ["Show B", "Show A", "Show D"], "CA": ["Show A", "Show C", "Show B"]},
     {"US": ["Show A", "Show C", "Show B"], "UK": ["Show A", "Show B", "Show C"], "CA": ["Show B", "Show A", "Show C"]},
-    {"US": ["Show B", "Show A", "Show C"], "UK": ["Show A", "Show C", "Show B"], "CA": ["Show A", "Show B", "Show D"]}
+    {"US": ["Show B", "Show A", "Show C"], "UK": ["Show A", "Show C", "Show B"], "CA": ["Show A", "Show B", "Show D"]},
+    {"US": ["Show D", "Show A", "Show B"], "UK": ["Show A", "Show D", "Show B"], "CA": ["Show B", "Show D", "Show A"], "IN": ["Show A", "Show B", "Show D"]},
+    {"US": ["Show A", "Show E", "Show B"], "UK": ["Show B", "Show A", "Show E"], "CA": ["Show E", "Show A", "Show B"], "IN": ["Show B", "Show A", "Show E"]},
+    {"US": ["Show F", "Show A", "Show B"], "UK": ["Show A", "Show F", "Show B"], "CA": ["Show B", "Show F", "Show A"], "IN": ["Show F", "Show B", "Show A"]},
 ]
-# Expected Output: ["Show A", "Show B"]
+# Expected Output: 
+# Slow thinking: 1. count the occurances of the shows each day for each region and store in dict
+# {US: {"Show A": 6, "Show B": 6, "Show C": ...}, UK:
+def find_top_shows(regional_rankings):
+    # initialize the regional count dict
+    regional_count = defaultdict(lambda: defaultdict(int))
+    # loop over each day
+    for day_ranking in regional_rankings:
+    # loop over each region and list of shows
+        for region, shows in day_ranking.items():
+            # count each show in the list of shows and add to the dict
+            for show in shows:
+                regional_count[region][show] += 1
+    top_shows = {}
+    for region, show_counts in regional_count.items():
+    # Sort shows by count (descending), then by show name (for tie-breaking)
+        sorted_shows = sorted(show_counts.items(), key=lambda x: (-x[1], x[0]))
+        top_shows[region] = [show for show, count in sorted_shows[:3]]
+    return top_shows
+print(find_top_shows(regional_rankings))
+
+
