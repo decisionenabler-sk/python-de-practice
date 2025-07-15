@@ -12,9 +12,9 @@ weekly_activity = [
 #     "decline_rates": {"user_101": 0.75, "user_104": 1.0}  # percentage decline from first to last week
 # }
 # slow thinking: 
-# 1. arrange all user activity in a dict with user as key and activity values 
-# 2. compare the elements of the list of values and add to at_risk 
-# 3. first and last value pct and add to rates
+# - arrange all user activity in a dict with user as key and activity values 
+# - compare the elements of the list of values and add to at_risk 
+# - first and last value pct and add to rates
 def churning_users(weekly_activity):
     user_weekly_activity =  defaultdict(list)
     at_risk_users = []
@@ -93,5 +93,28 @@ def find_user_device_switch(weekly_primary_device):
                 switches += 1
         output[user] = switches
     return dict(output)
-print(find_user_device_switch(weekly_primary_device))
+# print(find_user_device_switch(weekly_primary_device))
 
+# 4. Track users' subscription plan changes over time to identify migration patterns. For each user, return their subscription journey and final status.
+monthly_subscriptions = [
+    {"user_1": "Basic", "user_2": "Standard", "user_3": "Premium"},
+    {"user_1": "Standard", "user_2": "Standard", "user_3": "Premium"},
+    {"user_1": "Standard", "user_2": "Premium", "user_3": "Basic"},
+    {"user_1": "Premium", "user_2": "Premium", "user_3": "Standard"}
+]
+def get_subscriptions_changes(monthly_subscriptions):
+    user_journey = defaultdict(list)
+    for month in monthly_subscriptions:
+        for user, plan in month.items():
+            user_journey[user].append(plan)
+    result = {}
+    for user, journey in user_journey.items():
+        upgraded = False
+        if (journey[0] in ["Basic" , "Standard"] and journey[-1] == "Premium") or (journey[0] == "Basic" and journey[-1] == "Standard"):
+            upgraded = True
+        result[user] = {
+            "journey": journey,
+            "upgraded": upgraded
+        } 
+    return result
+print(get_subscriptions_changes(monthly_subscriptions))
