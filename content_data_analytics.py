@@ -66,6 +66,32 @@ def find_top_shows(regional_rankings):
         sorted_shows = sorted(show_counts.items(), key=lambda x: (-x[1], x[0]))
         top_shows[region] = [show for show, count in sorted_shows[:3]]
     return top_shows
-print(find_top_shows(regional_rankings))
+# print(find_top_shows(regional_rankings))
 
+# 3. Track how users migrate between viewing devices over time.
+# Find users who switched devices and count their total device switches.
+# Expected Output: {"user_1": 1, "user_2": 2, "user_3": 2, "user_4": 2}
+weekly_primary_device = [
+    {"user_1": "TV", "user_2": "Mobile", "user_3": "Laptop", "user_4": "TV"},
+    {"user_1": "TV", "user_2": "TV", "user_3": "Mobile", "user_4": "Mobile"},
+    {"user_1": "Mobile", "user_2": "TV", "user_3": "Mobile", "user_4": "Mobile"},
+    {"user_1": "Mobile", "user_2": "Laptop", "user_3": "TV", "user_4": "TV"}
+]
+def find_user_device_switch(weekly_primary_device):
+    # first we arrage the weekly user devices as a list for each user
+    user_devices = defaultdict(list)
+    output = defaultdict(int)
+    for week in weekly_primary_device:
+        for user, device in week.items():
+            user_devices[user].append(device)
+    # Then we can compare previous and current devices in the list to count the switches
+    for user, devices in user_devices.items():
+        switches = 0
+        for i in range(1, len(devices)):
+            # when the current week device is not equal to previous device
+            if devices[i] != devices[i-1]:
+                switches += 1
+        output[user] = switches
+    return dict(output)
+print(find_user_device_switch(weekly_primary_device))
 
