@@ -21,9 +21,6 @@ test_input = ["eat", "tea", "tan", "ate", "nat", "bat"]
 # 2. **Find All Pairs with Given Sum**: Given an array of integers and a target sum, find all pairs that add up to the target.
 #    Example: Input: [1, 5, 3, 7, 9], target = 10
 #    Output: [(1, 9), (3, 7)]
-from collections import defaultdict
-
-
 def find_pairs(arr, target):
     index_map = {}
     pairs = []
@@ -74,15 +71,41 @@ def get_most_req_elements(arr,k):
 # Given a list of time intervals for deliveries (start and end times), merge overlapping intervals to optimize delivery routes.
 #    Example: Input: [(1, 3), (2, 6), (8, 10), (15, 18)]
 #    Output: [(1, 6), (8, 10), (15, 18)]
-# def merge_intervals(deliveries):
-
-# 7. **Log Rate Limiter**: Implement a rate limiter that allows each user to make at most 3 requests within any 1-minute window. Return True if the request should be allowed, False otherwise. Each request comes with a timestamp and user_id.
+# Slow Thinking: check if start and end is between the range of other start and end pairs
+def merge_intervals(deliveries):
+    # first sort the list
+    sorted_deliveries = sorted(deliveries)
+    # initialize 
+    merged = [sorted_deliveries[0]]
+    # Iterate through remaining intervals
+    for current in sorted_deliveries[1:]:
+        last_merged = merged[-1]
+        # Check if current interval overlaps with last merged interval
+        # Overlap occurs when current start <= last end
+        if current[0] <= last_merged[1]:
+            # Merge by extending the end time to the maximum
+            merged[-1] = (last_merged[0], max(last_merged[1], current[1]))
+        else:
+            # No overlap, add current interval as new
+            merged.append(current)
+    return merged
+       
+# 7. **Log Rate Limiter**: Implement a rate limiter that allows each user to make at most 3 requests within any 1-minute window. 
+# Return True if the request should be allowed, False otherwise. Each request comes with a timestamp and user_id.
 
 # 8. **Find Common Delivery Locations**: 
 # Given two delivery personnel's routes (lists of location IDs), find the common locations they both visit.
-#    Example: Input: route1 = [1, 5, 3, 7, 9], route2 = [2, 3, 5, 8]
+# Example: Input: 
+route1 = [1, 5, 3, 7, 9] 
+route2 = [2, 3, 5, 8]
 #    Output: [3, 5]
-
+def common_locations(r1,r2):
+    seen = []
+    for r in r1:
+        if r in r2:
+            seen.append(r)
+    return seen
+print(common_locations(route1,route2))
 # 9. **Package Grouping by Weight**: 
 # Group packages into bins where each bin can hold up to a certain weight. Return the minimum number of bins needed.
 #    Example: Input: 
@@ -130,4 +153,4 @@ def find_common_words(input):
     # find intersection of the words in the sentences converted to set
     common_words = set([word for word in sentence1 if word in sentence2])
     return list(common_words)
-print(find_common_words(["Today is a great day to learn something new!", "Is today the day to learn?"]))
+# print(find_common_words(["Today is a great day to learn something new!", "Is today the day to learn?"]))
