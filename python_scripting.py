@@ -188,10 +188,12 @@ def common_words(sentence1, sentence2):
     """
     import string
     common = []
-    for word in sentence1.split().lower():
-        if word in sentence2.split().lower():
-            common.append(word) 
-    return common
+    # translator to strip punctuation
+    translator = str.maketrans('', '', string.punctuation)
+    # Process both sentences and convert to sets 
+    words1 = set(sentence1.lower().translate(translator).split())
+    words2 = set(sentence2.lower().translate(translator).split())
+    return list(words1 & words2)
 
 # Test case:
-print(common_words("Hello world!", "World of Python")) #→ {"world"}
+print(common_words("Hello world!", "World of Python")) #→ ["world"]
