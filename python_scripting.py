@@ -211,3 +211,21 @@ def invert_dict(d):
 # Test case:
 # print(invert_dict({"a": 1, "b": 2, "c": 1, "d": 3, "e": 2}))
 # → {1: {"a", "c"}, 2: {"b", "e"}, 3: {"d"}}
+
+# Given the data representing (category, subcategory, value), create a nested data structure and calculate aggregations.
+
+def aggregate_nested_data(data):
+    """
+    data = [("sales", "Q1", 100), ("sales", "Q2", 150), ("marketing", "Q1", 80)]
+    Return: {
+        "sales": {"Q1": 100, "Q2": 150, "total": 250},
+        "marketing": {"Q1": 80, "total": 80}
+    }
+    """
+    agg_data = defaultdict(lambda: defaultdict(int))
+    for dept,qtr, rev in data:
+        agg_data[dept][qtr] = rev
+        agg_data[dept]['total'] += rev
+    return {dept: dict(data) for dept, data in agg_data.items()}
+# Test
+print(aggregate_nested_data([("sales", "Q1", 100), ("sales", "Q2", 150), ("marketing", "Q1", 80)]))
