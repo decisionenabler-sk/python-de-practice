@@ -196,4 +196,18 @@ def common_words(sentence1, sentence2):
     return list(words1 & words2)
 
 # Test case:
-print(common_words("Hello world!", "World of Python")) #→ ["world"]
+# print(common_words("Hello world!", "World of Python")) #→ ["world"]
+# Given a dictionary, create its inverse mapping where each value becomes a key mapping to a set of original keys that had that value.
+def invert_dict(d):
+    """
+    Create inverse mapping: value → set of keys
+    Use dict comprehension with set comprehension
+    """
+    inverse_d = defaultdict(set)
+    for k,v in d.items():
+        inverse_d[v].add(k)
+    return dict(inverse_d)
+
+# Test case:
+# print(invert_dict({"a": 1, "b": 2, "c": 1, "d": 3, "e": 2}))
+# → {1: {"a", "c"}, 2: {"b", "e"}, 3: {"d"}}
