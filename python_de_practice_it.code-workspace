@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "sql_de_practice_it",
+			"path": "../sqlprep/sql_de_practice_it"
+		}
+	],
+	"settings": {}
+}

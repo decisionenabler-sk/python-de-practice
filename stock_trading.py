@@ -23,6 +23,7 @@ def get_user_alerts(alerts):
             stock_user_alerts[ticker].add(alert['user_id'])
     stock_user_alerts = {ticker:sorted(users) for ticker,users in stock_user_alerts.items()}
     return stock_user_alerts
+# Test
 print(get_user_alerts(alerts))
 # Verify if a user has permission to perform certain trading actions based on their account roles and role permissions.
 user_roles = {
@@ -53,8 +54,8 @@ def has_permission(user, permission):
             return True
             
     return False
-# Check examples:
-# has_permission('u1', 'buy_options') -> True
-# has_permission('u2', 'buy_options') -> False
-# has_permission('u3', 'buy_crypto') -> True
-# has_permission('u4', 'margin_trading') -> True
+# Test :
+print(has_permission('u1', 'buy_options')) # -> True
+print(has_permission('u2', 'buy_options')) # -> False
+print(has_permission('u3', 'buy_crypto')) # -> True
+print(has_permission('u4', 'margin_trading')) # -> True

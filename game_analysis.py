@@ -13,11 +13,14 @@ np.random.seed(42)
 user_ids = np.random.randint(1000, 9999, 1000)
 session_ids = np.random.randint(10000, 99999, 1000)
 start_times = [datetime(2023, 1, 1) + timedelta(hours=np.random.randint(0, 720)) for _ in range(1000)]
-durations = np.random.randint(5, 180, 1000)  # Session durations in minutes
+
+# Fix: Convert numpy.int64 to Python int
+durations = [int(x) for x in np.random.randint(5, 180, 1000)]  # Session durations in minutes
 end_times = [start + timedelta(minutes=duration) for start, duration in zip(start_times, durations)]
 experience_ids = np.random.choice(['game_A', 'game_B', 'game_C', 'game_D', 'game_E'], 1000)
 device_types = np.random.choice(['mobile', 'tablet', 'desktop', 'console'], 1000)
 
+# Create DataFrame
 session_data = pd.DataFrame({
     'user_id': user_ids,
     'session_id': session_ids,
