@@ -1,4 +1,5 @@
 from collections import defaultdict, deque
+from datetime import datetime, timedelta
 # Build an inverted index for stock price alerts. Map each stock ticker to the set of user IDs who have alerts for that stock, considering different alert types.
 alerts = [
     {'alert_id': 1, 'user_id': 'u1', 'tickers': ['AAPL', 'GOOGL'], 'type': 'price_above'},
@@ -112,3 +113,59 @@ def get_order_metrics(fills):
 # Test:
 # print(get_order_metrics(fills))
 
+# Detect potentially fraudulent transactions based on:
+# - Velocity: >3 transactions in 5 minutes
+# - Amount spike: Transaction >5x user's average
+# - New device: First time device_id for user
+
+# Input: Transaction history
+transactions = [
+        {'id': 1, 'user_id': 1, 'amount': 50, 'timestamp': '2024-01-01 10:00:00', 'device_id': 'A'},
+        {'id': 2, 'user_id': 1, 'amount': 60, 'timestamp': '2024-01-01 10:02:00', 'device_id': 'A'},
+        {'id': 3, 'user_id': 1, 'amount': 500, 'timestamp': '2024-01-01 10:03:00', 'device_id': 'B'},
+        {'id': 4, 'user_id': 1, 'amount': 10000, 'timestamp': '2024-01-01 10:04:00', 'device_id': 'C'},
+    ]
+# Output: Flagged transactions with reasons
+# [
+#     {'transaction_id': 4, 'reasons': ['amount_spike', 'new_device', 'velocity']}
+# ]
+# slow thinking: Initialize the fraud_txns, build the logic for reasons for users: 1. avg_user_amt 2. new_device 3. txn_count, txn_time_diff
+def detect_fraud_transactions(transactions):
+    fraud_txn = {'transaction_id': 0, 'reasons': set()}
+    user_history = defaultdict(lambda: {
+        'amounts': [],
+        'devices': set(),
+        'recent_txns': []
+    })
+    sorted_txns = sorted(transactions, key=lambda x: x['timestamp'])
+     # calculate user avg
+    for txn in sorted_txns:
+        user_id = txn['user_id']
+        txn_time = datetime.strptime(txn['timestamp'], '%Y-%m-%d %H:%M:%S')
+        # Check amount spike (>5x average)
+        if user_history[user_id]['amounts']:
+            avg_amount = sum(user_history[user_id]['amounts']) / len(user_history[user_id]['amounts'])
+            if txn['amount'] > avg_amount * 5:
+                fraud_txn['reasons'].add('amount_spike')
+        
+        # Check new device
+        if txn['device_id'] not in user_history[user_id]['devices']:
+            fraud_txn['reasons'].add('new_device')
+        
+        # Check velocity (>3 transactions in 5 minutes)
+        five_min_ago = txn_time - timedelta(minutes=5)
+        recent_count = len([t for t in user_history[user_id]['recent_txns'] if t > five_min_ago])
+        if recent_count >= 3:
+            fraud_txn['reasons'].add('velocity')
+        # Flag if suspicious
+        if fraud_txn['reasons']:
+            fraud_txn['transaction_id'] = txn['id']
+        # at last update the txn to history
+        user_history[user_id]['amounts'].append(txn['amount'])
+        user_history[user_id]['devices'].add(txn['device_id'])
+        user_history[user_id]['recent_txns'].append(txn_time)
+    
+    return [{'transaction_id': fraud_txn['transaction_id'], 
+             'reasons': sorted(list(fraud_txn['reasons']))}] if fraud_txn['reasons'] else []
+
+# print(detect_fraud_transactions(transactions))
