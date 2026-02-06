@@ -30,7 +30,8 @@ def find_pairs(arr, target):
         if diff in index_map:
             pairs.append((index_map[diff], i))
         index_map[num] = i
-    return pairs    
+    return pairs 
+print(find_pairs( [1, 5, 3, 7, 9], 10))
 # 3. **First Non-Repeating Character**: Find the first non-repeating character in a string.
 #    Example: Input: "leetcode"
 #    Output: 0 (index of 'l')
@@ -92,7 +93,22 @@ def merge_intervals(deliveries):
        
 # 7. **Log Rate Limiter**: Implement a rate limiter that allows each user to make at most 3 requests within any 1-minute window. 
 # Return True if the request should be allowed, False otherwise. Each request comes with a timestamp and user_id.
+# Sample requests: (timestamp in seconds, user_id)
+requests = [
+    (1000, "user1"),  # First request from user1
+    (1020, "user1"),  # Second request from user1, within 1 min
+    (1040, "user1"),  # Third request from user1, within 1 min
+    (1050, "user1"),  # Fourth request from user1, should be denied
+    (1060, "user2"),  # First request from user2
+    (1070, "user2"),  # Second request from user2
+    (1080, "user1"),  # Fifth request from user1, still within 1 min window
+    (2000, "user1"),  # Request after 1 min window, should be allowed
+]
+# def log_rate_limiter(requests):
+#     for t,msg in requests:
 
+# Expected outputs for each request:
+# [True, True, True, False, True, True, False, True]
 # 8. **Find Common Delivery Locations**: 
 # Given two delivery personnel's routes (lists of location IDs), find the common locations they both visit.
 # Example: Input: 

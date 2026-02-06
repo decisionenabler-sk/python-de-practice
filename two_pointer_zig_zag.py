@@ -333,7 +333,7 @@ clients_6 = [
     {'client_id': 'c', 'pending_requests': 200},
     {'client_id': 'd', 'pending_requests': 200},
 ]
-# Expected: One of [100, 200, 100, 200] pattern with corresponding IDs
+# Expected: One of [100, 200, 100, 200] pattern with corresponding IDs ['a', 'd', 'b', 'c']
 
 def fair_queue_order(client_volumes: list[dict]) -> list[str]:
     if not client_volumes:
